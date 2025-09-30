@@ -21,7 +21,8 @@ Invoke-WebRequest -Uri "https://github.com/osandell/kanata-bootstrap/raw/main/ka
 
 # Start Kanata
 Write-Host "Starting Kanata..."
-Start-Process -FilePath $exePath -ArgumentList @("-c", $configPath) -NoNewWindow
+Write-Host "Running: $exePath -c `"$configPath`""
+Start-Process -FilePath $exePath -ArgumentList "-c `"$configPath`""
 
 Write-Host "Kanata installed and started successfully!"
 Write-Host "Installation directory: $installDir"
