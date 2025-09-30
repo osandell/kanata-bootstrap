@@ -1,0 +1,1224 @@
+(defcfg
+  danger-enable-cmd yes
+)
+
+(defvirtualkeys
+  vkey-lalt lalt
+  w-held f23
+  y-held f23
+  y-layer-a-key-alacritty (switch ((input virtual y-held)) (macro C-b 100 S-6) break () (macro y a) break)
+  y-layer-a-key-default (switch  ((input virtual y-held)) C-w break () (macro y a) break)
+  w-layer-m-key (switch  ((input virtual w-held)) M-A-S-m break () (macro w m) break)
+  w-layer-n-key (switch  ((input virtual w-held)) (unicode ∫) break () (macro w n) break)
+  w-layer-e-key (switch  ((input virtual w-held)) (unicode ∏) break () (macro w e) break)
+  w-layer-g-key (switch  ((input virtual w-held)) M-A-S-g break () (macro w g) break)
+  w-layer-i-key (switch  ((input virtual w-held)) M-A-S-i break () (macro w i) break)
+  w-layer-u-key (switch  ((input virtual w-held)) M-A-S-u break () (macro w u) break)
+  w-layer-p-key (switch  ((input virtual w-held)) M-A-S-p break () (macro w p) break)
+  alacritty_active f23
+  brave_active f23
+  cursor_active f23
+  fork_active f23
+)
+
+;; Source
+(defsrc
+  esc
+  f7
+  f8
+  del
+
+  \
+  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+  0
+  =
+  [
+  bspc
+
+  tab
+  q
+  w
+  e
+  r
+  t
+  y
+  u
+  i
+  o
+  p
+  ]
+  ;
+
+
+  caps
+  a
+  s
+  d
+  f
+  g
+  h
+  j
+  k
+  l
+  `
+  '
+  /
+  ret
+
+  lsft
+  102d
+  z
+  x
+  c
+  v
+  b
+  n
+  m
+  ,
+  .
+  -
+  rsft
+
+  up
+
+  lctl
+  lmeta
+  lalt
+  spc
+  kp/
+  rctl
+  left
+  down
+  rght
+)
+
+(deflayer default-layer
+  (tap-hold-press 100 200 caps (multi lmeta (layer-toggle lmeta-layer)))
+  A-C-M-S-f7
+  A-C-M-S-f8
+  mute
+
+  (tap-hold-press 100 1000 (switch  ((input virtual alacritty_active)) (cmd curl "http://127.0.0.1:9125/toggle-fork") break ((input virtual cursor_active)) (cmd curl "http://127.0.0.1:9125/toggle-fork") break ((input virtual fork_active)) (cmd curl "http://127.0.0.1:9125/toggle-fork") break () A-S-M-t break) (layer-toggle paragraph-layer)) ;; | alacritty: tmux – close pane |     
+  (layer-toggle char-variation-layer)
+  (tap-hold-press 100 200 ` (layer-toggle oe-layer))
+  3
+  4
+  5
+  6
+  7
+  (cmd C:\Progra~1\AutoHotKey\v2\AutoHotKey64.exe \\wsl.localhost\Ubuntu\home\olof\.local\bin\position-windows.ahk)
+  8
+  (tap-hold-press 100 200 ' (multi lalt (layer-toggle ae-layer)))
+  (macro (cmd C:\PortableApps\nircmd\nircmd.exe setcursor 200 1500) 10 (cmd C:\PortableApps\nircmd\ahk-click.exe) 100 (cmd C:\PortableApps\nircmd\nircmd.exe setcursor 1570 700) (cmd curl "http://127.0.0.1:9125/focus?app=brave&profile=personal"))
+  (macro (cmd C:\PortableApps\nircmd\nircmd.exe setcursor 1130 2580) 10 (cmd C:\PortableApps\nircmd\ahk-click.exe) 100 (cmd C:\PortableApps\nircmd\nircmd.exe setcursor 2900 1000) (cmd curl "http://127.0.0.1:9125/focus?app=brave&profile=personal")) 
+  volu
+
+  q
+  (tap-hold-press 100 200 w (multi (layer-while-held w-layer) (on-press press-vkey w-held) (on-release release-vkey w-held)))
+  f
+  p
+  b
+  6
+  XX
+  j
+  l
+  u
+  (tap-hold-press 100 200 y (multi (layer-toggle y-layer) (on-press press-vkey y-held) (on-release release-vkey y-held) (on-release release-vkey vkey-lalt)))
+  -
+  S-7
+
+  a
+  r
+  s
+  t
+  g
+  7
+  XX
+  m
+  n
+  e
+  i
+  o
+  /
+  voldwn
+
+  (tap-hold-press 100 200 z (multi lsft (layer-toggle lsft-layer)))
+  x
+  c
+  d
+  v
+  ret
+  8
+  bspc
+  k
+  h
+  ,
+  .
+  (tap-hold-press 100 200 ] rsft)
+
+  up
+
+  lctrl
+  del
+  (tap-hold-press 100 200 esc (multi lctl (layer-while-held special1-layer)))
+  (tap-hold-press 100 200 tab (layer-toggle tab-layer))
+  spc
+  lalt
+  left
+  down
+  rght
+  
+)
+
+(deflayer paragraph-layer
+  _
+  _
+  _
+  _
+
+  _
+  (macro (cmd powershell.exe -ExecutionPolicy Bypass -File \\wsl.localhost\Ubuntu\home\olof\dev\osandell\tomatoland\windows-notifier.ps1 -Title "Switching to qwerty" -Message "" -Duration 2000) (cmd C:\Progra~1\AutoHotKey\v2\AutoHotKey64.exe \\wsl.localhost\Ubuntu\home\olof\.config\kanata\restart-kanata-qwerty.ahk))
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+)
+
+(deflayer lmeta-layer
+  _
+  _
+  _
+  _
+
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  (cmd Rundll32.exe user32.dll,LockWorkStation)
+  _
+  _
+  _
+  _
+
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+)
+
+(deflayer char-variation-layer
+  _
+  _
+  _
+  _
+
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  (unicode ²)
+  _
+  (unicode –)
+  _
+
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  (macro [ e)
+  _
+  _
+  _
+  _
+
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+)
+
+(deflayer oe-layer
+  _
+  _
+  _
+  _
+
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  (switch  ((input virtual alacritty_active)) (macro C-b 10 S-2) break) ;; | alacritty: tmux – new pane below |
+  (switch  ((input virtual alacritty_active)) (macro C-b 10 S-5) break) ;; | alacritty: tmux – new pane to the right |
+  (switch  ((input virtual alacritty_active)) (macro C-b 10 x) break) ;; | alacritty: tmux – close pane |
+  _
+
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  (switch  ((input virtual alacritty_active)) (macro C-b 10 left) break) ;; | alacritty: tmux – focus pane to the left |
+  (switch  ((input virtual alacritty_active)) (macro C-b 10 down) break) ;; | alacritty: tmux – focus pane to the down |
+  (switch  ((input virtual alacritty_active)) (macro C-b 10 up) break) ;; | alacritty: tmux – focus pane to the up |
+  (switch  ((input virtual alacritty_active)) (macro C-b 10 right) break) ;; | alacritty: tmux – focus pane to the right |
+  _
+  _
+  _
+
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+)
+
+(deflayer ae-layer
+  _
+  _
+  _
+  _
+
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+
+
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  S-tab
+  _
+  tab
+  _
+  _
+  _
+  _
+)
+
+(deflayer w-layer
+  _
+  _
+  _
+  _
+
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  
+  M-A-S-q
+  _
+  (tap-hold 100 200 (cmd curl "http://127.0.0.1:9125/focus?app=windowsterminal.exe")  (cmd curl "http://127.0.0.1:9125/focus?app=explorer.exe"))
+  (cmd curl "http://127.0.0.1:9125/focus?app=brave&profile=work")
+  (tap-hold 100 200 M-A-S-b M-A-S-kp3)
+  _
+  _
+  (macro w j)
+  (macro w l)
+  (on-release tap-vkey w-layer-u-key)
+  (macro w y)
+  (macro w /)
+  (macro w S-7)
+
+  (macro w a)
+  (macro w r)
+  (cmd curl "http://127.0.0.1:9125/focus?app=brave&profile=youtube")
+  (cmd curl "http://127.0.0.1:9125/focus?app=brave&profile=personal")
+  (on-release tap-vkey w-layer-g-key)
+  _
+  _
+  (on-release tap-vkey w-layer-m-key)
+  (on-release tap-vkey w-layer-n-key)
+  (on-release tap-vkey w-layer-e-key)
+  (on-release tap-vkey w-layer-i-key)
+  (macro w o)
+  (macro w \)
+  _
+
+  (macro w z)
+  (macro w x)
+  (macro w c)
+  (cmd curl "http://127.0.0.1:9125/focus?app=brave&profile=ai")
+  (macro w v)
+  _
+  _
+  _
+  (macro w k)
+  (macro w h)
+  (macro w ,)
+  (macro w .)
+  _
+  _
+  _
+  _
+  (cmd curl "http://127.0.0.1:9125/focus?app=alacritty")
+  (cmd curl "http://127.0.0.1:9125/focus?app=1Password.exe")
+  _
+  _
+  _
+  _
+  _
+)
+
+(deflayer y-layer
+  _
+  _
+  _
+  _
+
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  (macro  (cmd curl "http://127.0.0.1:9125/suppress-companion") 10 (cmd curl -X POST -d "close" http://localhost:9123))
+  (macro  (cmd curl "http://127.0.0.1:9125/suppress-companion") 10 (cmd curl -X POST -d "left" http://localhost:9123))
+  (macro  (cmd curl "http://127.0.0.1:9125/suppress-companion") 10 (cmd curl -X POST -d "right" http://localhost:9123))
+  _
+  _
+  _
+  _
+  (macro (on-press press-vkey vkey-lalt) S-tab)
+  (macro (on-press press-vkey vkey-lalt) lsft tab)
+  (switch ((input virtual cursor_active)) A-C-S-u break) 
+  _ 
+  _
+  _
+
+  (switch ((input virtual alacritty_active)) (on-release tap-vkey y-layer-a-key-alacritty) break () (on-release tap-vkey y-layer-a-key-default) break) ;; close tab / window
+  (switch ((input virtual alacritty_active)) (macro C-b 100 p) break ((input virtual cursor_active)) (macro C-pgup) break () C-pgup break)
+  (switch ((input virtual alacritty_active)) (macro C-b 100 n) break ((input virtual cursor_active)) (macro C-pgdn) break () C-pgdn break)
+  (tap-hold 100 200 (switch  ((input virtual alacritty_active)) (macro C-b 100 c) break ((input virtual cursor_active)) (macro C-n) break () C-t break) (switch  ((input virtual alacritty_active)) (macro C-b 100 c) break ((input virtual brave_active)) (macro A-S-d) break))
+  (switch ((input virtual alacritty_active)) (cmd curl -X POST -d toggleFullscreenAlacritty http://localhost:9123) break () (cmd curl -X POST -d toggleFullscreenCursor http://localhost:9123) break)
+  _
+  _
+  A-C-S-m
+  A-C-S-n
+  (macro y e)
+  _ 
+  (macro y o)
+  _   
+  _
+
+  _
+  _
+  _
+  _
+  A-C-S-v
+  A-ret
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+
+  _
+  _
+  _
+  _
+  (switch  ((input virtual brave_active)) C-q break ((input virtual cursor_active))  A-C-S-ins break) ;; | alacritty: tmux leader | cursor: toggle right bar |
+  (cmd curl "http://127.0.0.1:9125/focus?app=cursor")
+  _
+  _
+  _
+  _
+)
+
+(deflayer lsft-layer
+  _
+  _
+  _
+  _
+
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  (multi (release-key lsft) RA-=)
+
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  2
+  _
+
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+)
+
+(deflayer special1-layer
+  _
+  _
+  _
+  _
+
+  _
+  _
+  tab
+  (multi (release-key lctl) s)
+  _
+  _
+  _
+  _
+  _
+  _
+  (multi (release-key lctl) C--)
+  (multi (release-key lctl) C-+)
+  _
+  (multi (release-key lctl) (cmd c:\PortableApps\Studi\studi.exe up) (cmd c:\portableapps\nircmd\nircmd.exe changebrightness +5))
+
+  (multi (release-key lctl) s)
+  C-z
+  C-S-z
+  C-s
+  _
+  _
+  _
+  (switch  ((input virtual alacritty_active)) C-b break ((input virtual cursor_active)) C-b break) ;; | alacritty: tmux leader | cursor: toggle right bar |
+  (switch  ((input virtual alacritty_active)) C-l break ((input virtual brave_active)) (multi (release-key lctl) f12) break ((input virtual cursor_active)) C-l break) ;; | alacritty: soft clear | brave: toggle inspector | cursor: toggle chat bar |
+  (switch  ((input virtual alacritty_active)) C-r break ((input virtual cursor_active)) A-C-S-M-u break) ;; | alacritty: history search | cursor: new file |
+  (switch  ((input virtual alacritty_active)) (macro C-b 100 RA-8) break ((input virtual cursor_active)) A-C-S-M-y break) ;; | alacritty: tmux vi mode | cursor: new dir |
+  C-S-p
+  _
+
+  (tap-hold 100 200 (switch ((input virtual alacritty_active)) (multi (release-key lctl) (macro f z f ret)) break ((input virtual brave_active)) l break ((input virtual cursor_active)) S-f break () C-f break) (layer-toggle special1-a-layer)) ;; | TAP | alacritty: fuzzy find file | brave: focus url bar | cursor: find in procject | default: find |
+  (tap-hold 100 200 C-x (layer-toggle special1-r-layer))
+  C-c
+  C-v
+  _
+  _
+  _
+  (multi (release-key lctl) left)
+  (multi (release-key lctl) down)
+  (multi (release-key lctl) up)
+  (multi (release-key lctl) rght)
+  (switch  ((input virtual alacritty_active)) (macro C-b 100 spc) break ((input virtual brave_active)) C-S-x break ((input virtual cursor_active)) A-C-o break () C-o break) ;; | alacritty: tmux-thumbs (copy from scrollback) | brave: open 1password | cursor: open file | default: open |
+  (tap-hold 100 200 (switch ((input virtual cursor_active)) C-' break) (switch ((input virtual cursor_active)) (multi (release-key lalt) C-S-') break )) ;; | TAP | cursor: comment | HOLD | cursor: wrap comment 
+  (multi (release-key lctl) (cmd c:\PortableApps\Studi\studi.exe down) (cmd c:\portableapps\nircmd\nircmd.exe changebrightness -5))
+
+
+  (multi (release-key lctl) (macro f24 C-c))
+  (multi (release-key lctl) (switch ((input virtual brave_active)) A-left break)) ;; | brave: navigate back |
+  (multi (release-key lctl) (switch ((input virtual brave_active)) A-right break)) ;; | brave: navigate forward |
+  (multi (release-key lctl) f5)
+  (multi (release-key lctl) C-a)
+  _
+  _
+  (multi (release-key lctl) C-bspc)
+  (tap-hold 100 200 (switch ((input virtual alacritty_active)) l break () k break) (switch ((input virtual alacritty_active)) (multi (release-key lctl) (macro c l e a r ret)) break)) ;; | TAP | alacritty: soft clear | default: ctrl-k (edit code in Cursor, leader in GitHub) | HOLD | alacritty: hard clear |
+  _
+  _
+  A-x
+  _
+  C-S-e
+  _
+  (multi (release-key lctl) S-del)
+  _
+  (tap-hold 100 200 (multi (release-key lctl) lmet) (layer-toggle special1-tab))
+  (tap-hold 100 200 (switch  ((input virtual cursor_active)) S-p break) (layer-toggle special1-space-layer)) ;; | TAP | cursor: command palette |
+  _
+  _
+  _
+  _
+)
+
+
+(deflayer special1-a-layer
+  _
+  _
+  _
+  _
+
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  v
+  d
+  v
+  _
+  _
+  _
+  _
+  (switch ((input virtual cursor_active)) (multi (release-key lctl) A-S-n) break) ;; | cursor: duplicate line down |
+  (switch ((input virtual cursor_active)) (multi (release-key lctl) A-S-e) break) ;; | cursor: duplicate line up |
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+)
+
+(deflayer special1-r-layer
+  _
+  _
+  _
+  _
+
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  C-S-n
+  C-S-e
+  _
+  _
+  _
+  _
+
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+)
+
+(deflayer special1-tab
+  _
+  _
+  _
+  _
+
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  (multi (release-key lctl) pgdn)
+  (multi (release-key lctl) pgup)
+  _
+  _
+  
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  (multi (release-key lctl) home)
+  (multi (release-key lctl) (macro down down down down down down down down down down down down down down down))
+  (multi (release-key lctl) (macro up up up up up up up up up up up up up up up))
+  (multi (release-key lctl) end)
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+)
+
+(deflayer special1-space-layer
+  _
+  _
+  _
+  _
+
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  (cmd C:\Progra~1\AutoHotKey\v2\AutoHotKey64.exe \\wsl.localhost\Ubuntu\home\olof\.local\bin\to-light-mode.ahk)
+  _
+  _
+  _
+  _
+
+  (tap-hold 100 200 (switch ((input virtual cursor_active)) A-f break () f break) (layer-toggle special1-space-layer)) ;; | TAP | cursor: find in file | default: find |
+  (switch ((input virtual cursor_active)) M-r break) ;; | cursor: replace in file |
+  (cmd C:\Progra~1\AutoHotKey\v2\AutoHotKey64.exe \\wsl.localhost\Ubuntu\home\olof\.config\kanata\screenshot.ahk)
+  (cmd wsl -d Ubuntu -- /home/olof/dev/osandell/tomatoland/tomatoland.sh start)
+  _
+  _
+  _
+  (multi (release-key lctl) C-left)
+  (multi (release-key lctl) (macro down down down down down))
+  (multi (release-key lctl) (macro up up up up up))
+  (multi (release-key lctl) C-right)
+  _
+  _
+  _
+
+  _
+  _
+  _
+  (cmd C:\Progra~1\AutoHotKey\v2\AutoHotKey64.exe \\wsl.localhost\Ubuntu\home\olof\.local\bin\to-dark-mode.ahk)
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+)
+
+
+(deflayer tab-layer
+  _
+  _
+  _
+  _
+
+  _
+  _
+  (multi lsft 6)
+  _
+  _
+  _
+  _
+  _
+  _
+  _
+  (multi lsft 0)
+  _
+  _
+  s
+
+  (multi ralt 102d)
+  102d
+  (multi lsft 102d)
+  (multi ralt 4)
+  (macro S-; spc)
+  _
+  _
+  S-5
+  1
+  2
+  3
+  -
+  S-7
+
+  (multi lsft 8)
+  (multi ralt 7)
+  (multi ralt 0)
+  (multi lsft 9)
+  (multi lsft 1)
+  _
+  _
+  (multi lsft /)
+  4
+  5
+  6
+  0
+  (macro S-[ spc)
+  _
+
+  (multi ralt 2)
+  (multi ralt 8)
+  (multi ralt 9)
+  S-=
+  (macro RA-; spc)
+  _
+  _
+  _
+
+  =
+  7
+  8
+  9
+  (multi lsft 3)
+
+  _
+  _
+  C-del
+  _
+  _
+  .
+  _
+  _
+  _
+  _
+)
